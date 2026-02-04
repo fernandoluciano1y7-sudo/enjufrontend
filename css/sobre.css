@@ -1,0 +1,86 @@
+/* sobre.css */
+
+.about-hero {
+    padding: 120px 0 60px;
+    background-color: var(--bg-light);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.about-text .subtitle {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.about-description p {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.about-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.value-item {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    border-left: 4px solid var(--primary-color);
+}
+
+.value-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.value-item p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.about-image-section {
+    padding-bottom: 80px;
+    background-color: var(--bg-light);
+}
+
+.about-image-section img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 100px 0 40px;
+        text-align: center;
+    }
+    
+    .about-image-section img {
+        height: 250px;
+    }
+    
+    .value-item {
+        text-align: left;
+    }
+}

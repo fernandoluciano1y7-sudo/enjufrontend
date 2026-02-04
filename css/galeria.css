@@ -1,0 +1,178 @@
+/* Estilos específicos para galeria.html */
+
+.gallery-section {
+    padding: 60px 0 100px 0;
+}
+
+.gallery-section h2 {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+.gallery-section .subtitle {
+    margin-bottom: 30px;
+    color: #666;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 18px rgba(16, 128, 170, 0.08);
+    background: #fff;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s cubic-bezier(.4, 1.3, .6, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06);
+}
+
+.gallery-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(16, 128, 170, 0.55) 100%);
+    color: #fff;
+    padding: 14px 12px 10px 16px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s, transform 0.25s;
+    font-weight: 600;
+    font-size: 1.05em;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 992px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gallery-item img {
+        height: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    .gallery-item img {
+        height: 180px;
+    }
+}
+
+
+/* style.css (Versão 100% Mobile-First) */
+
+
+/* ... (muitas regras CSS anteriores permanecem as mesmas) ... */
+
+
+/* --- Galeria de Fotos --- */
+
+.gallery-section {
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: 2em;
+}
+
+
+/* IMPORTANTE: Removemos o grid-template-columns para o Swiper funcionar. */
+
+
+/* O Swiper (gallery-slider) é agora o container que define o layout. */
+
+.gallery-grid {
+    /* display: grid;  <-- REMOVIDO */
+    /* grid-template-columns: repeat(2, 1fr); <-- REMOVIDO */
+    gap: 0;
+    /* O Swiper controla o espaçamento entre os slides */
+}
+
+
+/* Estilo para garantir que o Swiper-slide não quebre o layout */
+
+.swiper-slide {
+    height: auto;
+}
+
+.gallery-item {
+    /* Garante que o item ocupe a largura correta para o Swiper */
+    width: 100%;
+    /* Será controlado pelo slidesPerView do Swiper */
+    box-shadow: var(--shadow-light);
+    /* Adiciona sombra aos slides para destacá-los */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    height: 180px;
+    /* Ajusta a imagem dentro do slide */
+}
+
+
+/* Estilo da paginação do Swiper */
+
+.swiper-pagination-bullet-active {
+    background: var(--primary-color) !important;
+}
+
+
+/* --- Seção de Pacotes Populares --- */
+
+
+/* ... (Regras anteriores para popular-packages) ... */
+
+
+/* IMPORTANTE: Removemos o display: flex para o Swiper funcionar. */
+
+.packages-grid {
+    /* display: flex; <-- REMOVIDO */
+    flex-direction: column;
+    /* <-- REMOVIDO (será controlado pelo Swiper) */
+    gap: 0;
+    /* O Swiper controla o espaçamento */
+}
+
+.package-item {
+    /* Garante que o item ocupe a largura correta para o Swiper */
+    width: 100%;
+    /* Será controlado pelo slidesPerView do Swiper */
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+
+/* ... (Resto do CSS Mobile permanece o mesmo) ... */

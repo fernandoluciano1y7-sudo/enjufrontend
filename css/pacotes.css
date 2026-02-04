@@ -1,0 +1,201 @@
+/* Estilos específicos para pacotes.html */
+
+.popular-packages {
+    padding: 60px 0 100px 0;
+}
+
+.popular-packages h2 {
+    font-size: 2.2em;
+    margin-bottom: 8px;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+.popular-packages .subtitle {
+    margin-bottom: 30px;
+    color: #666;
+    text-align: center;
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 30px;
+}
+
+.package-item {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(16, 128, 170, 0.08);
+    transition: transform 0.3s cubic-bezier(.4, 1.3, .6, 1), box-shadow 0.3s;
+}
+
+.package-item:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 32px rgba(16, 128, 170, 0.13);
+}
+
+.package-img {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+}
+
+.package-info {
+    padding: 18px 22px 16px 22px;
+    text-align: left;
+}
+
+.location {
+    font-size: 0.95em;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.location i {
+    margin-right: 5px;
+}
+
+.package-info h4 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.package-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.price-tag {
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.view-details-btn {
+    text-decoration: none;
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--primary-color);
+    transition: color 0.3s;
+}
+
+.view-details-btn:hover {
+    color: var(--secondary-color);
+}
+
+@media (max-width: 992px) {
+    .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+    .package-img {
+        height: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    .package-img {
+        height: 120px;
+    }
+}
+
+
+/* style.css (Versão 100% Mobile-First) */
+
+
+/* ... (muitas regras CSS anteriores permanecem as mesmas) ... */
+
+
+/* --- Galeria de Fotos --- */
+
+.gallery-section {
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: 2em;
+}
+
+
+/* IMPORTANTE: Removemos o grid-template-columns para o Swiper funcionar. */
+
+
+/* O Swiper (gallery-slider) é agora o container que define o layout. */
+
+.gallery-grid {
+    /* display: grid;  <-- REMOVIDO */
+    /* grid-template-columns: repeat(2, 1fr); <-- REMOVIDO */
+    gap: 0;
+    /* O Swiper controla o espaçamento entre os slides */
+}
+
+
+/* Estilo para garantir que o Swiper-slide não quebre o layout */
+
+.swiper-slide {
+    height: auto;
+}
+
+.gallery-item {
+    /* Garante que o item ocupe a largura correta para o Swiper */
+    width: 100%;
+    /* Será controlado pelo slidesPerView do Swiper */
+    box-shadow: var(--shadow-light);
+    /* Adiciona sombra aos slides para destacá-los */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    height: 180px;
+    /* Ajusta a imagem dentro do slide */
+}
+
+
+/* Estilo da paginação do Swiper */
+
+.swiper-pagination-bullet-active {
+    background: var(--primary-color) !important;
+}
+
+
+/* --- Seção de Pacotes Populares --- */
+
+
+/* ... (Regras anteriores para popular-packages) ... */
+
+
+/* IMPORTANTE: Removemos o display: flex para o Swiper funcionar. */
+
+.packages-grid {
+    /* display: flex; <-- REMOVIDO */
+    flex-direction: column;
+    /* <-- REMOVIDO (será controlado pelo Swiper) */
+    gap: 0;
+    /* O Swiper controla o espaçamento */
+}
+
+.package-item {
+    /* Garante que o item ocupe a largura correta para o Swiper */
+    width: 100%;
+    /* Será controlado pelo slidesPerView do Swiper */
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+
+/* ... (Resto do CSS Mobile permanece o mesmo) ... */

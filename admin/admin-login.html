@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - Enju Tours</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #ff9900;
+        --secondary-color: #1080aa;
+        --accent-color: #8c8378;
+        --bg-light: #f9f8f4;
+        --text-dark: #333;
+        --text-light: #ffffff;
+        --font-family: "Poppins", sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-family);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      /* Partículas de fundo */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: float 15s infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .login-container {
+        position: relative;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 50px 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 420px;
+        width: 100%;
+        animation: slideIn 0.5s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .logo-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo-text {
+        font-size: 2em;
+        font-weight: 800;
+        color: var(--accent-color);
+      }
+
+      .logo-tours {
+        font-weight: 400;
+        font-size: 0.8em;
+        color: var(--text-dark);
+      }
+
+      h2 {
+        font-size: 1.5em;
+        color: var(--text-dark);
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 0.95em;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+        position: relative;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+        font-weight: 500;
+        font-size: 0.9em;
+      }
+
+      .input-wrapper {
+        position: relative;
+      }
+
+      .input-wrapper i:not(.toggle-password) {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+        font-size: 1.1em;
+        pointer-events: none; /* Garante que clique passe para o input se necessário */
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 14px 15px 14px 45px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1em;
+        font-family: var(--font-family);
+        transition: all 0.3s;
+        background: white;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(255, 153, 0, 0.1);
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #999;
+        transition: color 0.3s;
+      }
+
+      .toggle-password:hover {
+        color: var(--primary-color);
+      }
+
+      .error-message {
+        background: #fee;
+        color: #c33;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 0.9em;
+        display: none;
+        animation: shake 0.4s;
+      }
+
+      .error-message.show {
+        display: block;
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-10px);
+        }
+        75% {
+          transform: translateX(10px);
+        }
+      }
+
+      .btn-login {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, var(--primary-color), #e88a00);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.05em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
+      }
+
+      .btn-login:active {
+        transform: translateY(0);
+      }
+
+      .btn-login.loading {
+        pointer-events: none;
+        opacity: 0.8;
+      }
+
+      .btn-login.loading::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .back-link {
+        text-align: center;
+        margin-top: 25px;
+      }
+
+      .back-link a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        font-size: 0.9em;
+        transition: color 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .back-link a:hover {
+        color: var(--primary-color);
+      }
+
+      @media (max-width: 480px) {
+        .login-container {
+          padding: 40px 25px;
+        }
+
+        .logo-text {
+          font-size: 1.6em;
+        }
+
+        h2 {
+          font-size: 1.3em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Partículas animadas -->
+    <div class="particles" id="particles"></div>
+
+    <div class="login-container">
+      <div class="login-header">
+        <div class="logo-container">
+          <img
+            src="https://i.ibb.co/s9nwS3v6/Screenshot-20251010-173357-Instagram.png"
+            alt="Enju Tours"
+            class="logo-img"
+          />
+          <div class="logo-text">
+            Enju <span class="logo-tours">Tours</span>
+          </div>
+        </div>
+        <h2>Painel Administrativo</h2>
+        <p class="subtitle">Faça login para gerenciar o conteúdo</p>
+      </div>
+
+      <div class="error-message" id="errorMessage">
+        <i class="fas fa-exclamation-circle"></i> Credenciais inválidas. Tente
+        novamente.
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Usuário</label>
+          <div class="input-wrapper">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Digite seu usuário"
+              required
+              autocomplete="username"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <div class="input-wrapper">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Digite sua senha"
+              required
+              autocomplete="current-password"
+            />
+            <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login" id="btnLogin">
+          <span class="btn-text">Entrar</span>
+        </button>
+      </form>
+
+      <div class="back-link">
+        <a href="../index.html">
+          <i class="fas fa-arrow-left"></i> Voltar ao site
+        </a>
+      </div>
+    </div>
+
+    <script src="../js/cms-api.js"></script>
+    <script>
+      // Criar partículas
+      const particlesContainer = document.getElementById("particles");
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.width = particle.style.height =
+          Math.random() * 50 + 10 + "px";
+        particle.style.animationDelay = Math.random() * 15 + "s";
+        particlesContainer.appendChild(particle);
+      }
+
+      // Toggle password visibility
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("password");
+
+      togglePassword.addEventListener("click", () => {
+        const type = passwordInput.type === "password" ? "text" : "password";
+        passwordInput.type = type;
+        togglePassword.classList.toggle("fa-eye");
+        togglePassword.classList.toggle("fa-eye-slash");
+      });
+
+      // Login form
+      const loginForm = document.getElementById("loginForm");
+      const errorMessage = document.getElementById("errorMessage");
+      const btnLogin = document.getElementById("btnLogin");
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Show loading
+        btnLogin.classList.add("loading");
+        btnLogin.querySelector(".btn-text").textContent = "Entrando...";
+        errorMessage.classList.remove("show");
+
+        // Simulate network delay logic inside try-catch if needed, but here direct call
+        try {
+            const success = await CMS_API.auth.login(username, password);
+
+            if (success) {
+                // Success - redirect to dashboard
+                window.location.href = "admin-dashboard.html";
+            } else {
+                throw new Error("Falha no login");
+            }
+        } catch (e) {
+            // Error
+            errorMessage.classList.add("show");
+            btnLogin.classList.remove("loading");
+            btnLogin.querySelector(".btn-text").textContent = "Entrar";
+
+            // Shake animation
+            loginForm.classList.add("shake");
+            setTimeout(() => loginForm.classList.remove("shake"), 400);
+        }
+      });
+
+      // Auto-focus no campo de usuário
+      document.getElementById("username").focus();
+    </script>
+  </body>
+</html>

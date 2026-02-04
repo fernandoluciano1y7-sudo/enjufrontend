@@ -1,0 +1,194 @@
+/* desktop.css (Carregado apenas em telas > 768px) */
+
+@media (min-width: 769px) {
+    /* Reverte a visibilidade da navegação e botões */
+    .main-nav,
+    .nav-actions {
+        display: flex !important;
+    }
+    .menu-toggle {
+        display: none;
+    }
+    .book-btn,
+    .icon-btn {
+        display: block;
+    }
+    .main-nav.active {
+        position: static;
+        box-shadow: none;
+        padding: 0;
+    }
+    .main-nav ul {
+        flex-direction: row;
+        gap: 15px;
+    }
+    .main-nav ul li {
+        padding: 0;
+        border-bottom: none;
+    }
+    /* Hero Section - Layout de Desktop */
+    .hero-grid {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 50px;
+        align-items: center;
+        text-align: left;
+        flex-direction: row;
+    }
+    .hero-text {
+        order: 1;
+        padding-right: 20px;
+    }
+    .hero-image {
+        order: 2;
+    }
+    .hero-text h1 {
+        font-size: 4em;
+    }
+    .arrow-icon {
+        display: inline-block;
+    }
+    .stat-cards {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 30px;
+    }
+    .stat-item {
+        width: auto;
+        justify-content: flex-start;
+    }
+    .circle-image {
+        width: 400px;
+        height: 400px;
+    }
+    /* Galeria de Fotos - Layout de Desktop */
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+    .gallery-item img {
+        height: 220px;
+    }
+    /* Pacotes - Layout de Desktop */
+    .packages-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        flex-direction: row;
+    }
+    .package-meta {
+        flex-direction: row;
+        align-items: center;
+    }
+    .view-details-btn {
+        align-self: auto;
+    }
+    /* Contato - Layout de Desktop */
+    .cta-content h2 {
+        font-size: 2em;
+    }
+    .contact-box {
+        flex-direction: row;
+        gap: 40px;
+    }
+    /* Footer - Layout de Desktop */
+    .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 50px;
+        flex-direction: row;
+        text-align: left;
+    }
+    .footer-about {
+        text-align: left;
+    }
+    .col {
+        text-align: left;
+    }
+}
+
+
+/* style.css (Versão 100% Mobile-First) */
+
+
+/* ... (muitas regras CSS anteriores permanecem as mesmas) ... */
+
+
+/* --- Galeria de Fotos --- */
+
+.gallery-section {
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: 2em;
+}
+
+
+/* IMPORTANTE: Removemos o grid-template-columns para o Swiper funcionar. */
+
+
+/* O Swiper (gallery-slider) é agora o container que define o layout. */
+
+.gallery-grid {
+    /* display: grid;  <-- REMOVIDO */
+    /* grid-template-columns: repeat(2, 1fr); <-- REMOVIDO */
+    gap: 0;
+    /* O Swiper controla o espaçamento entre os slides */
+}
+
+
+/* Estilo para garantir que o Swiper-slide não quebre o layout */
+
+.swiper-slide {
+    height: auto;
+}
+
+.gallery-item {
+    /* Garante que o item ocupe a largura correta para o Swiper */
+    width: 100%;
+    /* Será controlado pelo slidesPerView do Swiper */
+    box-shadow: var(--shadow-light);
+    /* Adiciona sombra aos slides para destacá-los */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    height: 180px;
+    /* Ajusta a imagem dentro do slide */
+}
+
+
+/* Estilo da paginação do Swiper */
+
+.swiper-pagination-bullet-active {
+    background: var(--primary-color) !important;
+}
+
+
+/* --- Seção de Pacotes Populares --- */
+
+
+/* ... (Regras anteriores para popular-packages) ... */
+
+
+/* IMPORTANTE: Removemos o display: flex para o Swiper funcionar. */
+
+.packages-grid {
+    /* display: flex; <-- REMOVIDO */
+    flex-direction: column;
+    /* <-- REMOVIDO (será controlado pelo Swiper) */
+    gap: 0;
+    /* O Swiper controla o espaçamento */
+}
+
+.package-item {
+    /* Garante que o item ocupe a largura correta para o Swiper */
+    width: 100%;
+    /* Será controlado pelo slidesPerView do Swiper */
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+
+/* ... (Resto do CSS Mobile permanece o mesmo) ... */
